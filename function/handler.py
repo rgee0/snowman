@@ -1,14 +1,16 @@
 import urllib2
+import sys
 import json
 import tweepy
 from tweetbuilder import TweetBuilder
 
 def handle(req):
 
-    if not req:
-        raise ValueError("No JSON object received")
-
-    event = json.loads(req)
+    try:
+        event = json.loads(req)
+    except ValueError:
+        sys.exit("No JSON object received")
+        return
 
     with open("/var/openfaas/secrets/skill", "r") as skill:
         skill_id = skill.read().strip()
