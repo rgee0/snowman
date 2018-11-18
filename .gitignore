@@ -1,3 +1,4 @@
 template
 build
 pub-cert.pem
+.vscode
